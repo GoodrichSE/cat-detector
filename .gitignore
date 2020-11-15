@@ -1,6 +1,6 @@
-./*.mp4
-./*.mov
-./cpp/build
+*.mp4
+*.mov
+cpp/build/
 
 
 # Compiled source #
