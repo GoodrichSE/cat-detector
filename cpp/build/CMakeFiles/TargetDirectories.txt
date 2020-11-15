@@ -1,0 +1,3 @@
+/home/ape-one/Repos/cat-detector/cpp/build/CMakeFiles/rebuild_cache.dir
+/home/ape-one/Repos/cat-detector/cpp/build/CMakeFiles/Main.dir
+/home/ape-one/Repos/cat-detector/cpp/build/CMakeFiles/edit_cache.dir
