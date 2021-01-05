@@ -1,6 +1,7 @@
 *.mp4
 *.mov
 cpp/build/
+nodejs/node-modules/
 
 
 # Compiled source #
