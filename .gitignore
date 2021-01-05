@@ -40,3 +40,4 @@ cpp/build/
 .Trashes
 ehthumbs.db
 Thumbs.db
+*.swp
