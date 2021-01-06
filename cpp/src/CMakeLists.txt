@@ -7,5 +7,6 @@ include_directories(/usr/local/include/jetson-utils /usr/local/include/jetson-in
 configure_file(cd-config.h.in cd-config.h)
 
 add_executable(Main main.cpp)
+add_executable(Hello hey.cpp)
  
 target_include_directories(Main PUBLIC "${PROJECT_BINARY_DIR}" "${PROJECT_BINARY_DIR}/cpp")
