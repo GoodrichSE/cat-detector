@@ -6,6 +6,8 @@ var app = express()
 
 const dog = exec('echo "Arf"')
 
+const pig = exec('./../cpp/build/Hello')
+
 const cat = exec('./../cpp/build/Main gettyimages-480868504-640_adpp.mp4', (err, stdout, stderr) => {
   console.log('Executable called.')
   if (err) {
@@ -25,6 +27,9 @@ app.get('/', (req, res) => {
 })
 app.get('/dog', (req, res) => {
   res.send(dog())
+})
+app.get('/pig', (req, res) => {
+  res.send(pig())
 })
 app.get('/cat', (req, res) => {
   res.send(cat())
