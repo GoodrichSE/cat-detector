@@ -3,8 +3,6 @@
 cpp/build/
 nodejs/node-modules/
 nodejs/node-modules/*
-nodejs/node-modules
-
 
 # Compiled source #
 ###################
