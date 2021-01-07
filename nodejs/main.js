@@ -4,8 +4,7 @@ const port = 5000
 const { exec } = require('child_process');
 var app = express()
 
-// These are not properly defined as functions
-// Make these callbacks instead, with function(){}
+// Calls subprocess to write to stdout
 function dog () {
 	console.log('Entering dog().')
 	str = exec('echo "Arf"', (err, stdout, stderr) => {
@@ -22,8 +21,10 @@ function dog () {
         })
 	// Testing stdout
 //	return "Arf!" 
+	console.log('Exiting dog().')
 }
 
+// Calls subprocess to call cpp binary to write to sdout
 function pig () {
 	console.log('Entering pig().')
 	exec('./cpp/build/Hello', (err, stdout, stderr) => {
@@ -54,8 +55,10 @@ function pig () {
 //          }
 //        })
 //	return str
+	console.log('Exiting pig().')
 }
 
+// Calls subprocess to call cpp binary which accepts an argument to write to sdout
 function cat () {
 	console.log('Entering cat().')
 	exec('./cpp/build/Main gettyimages-480868504-640_adpp.mp4', (err, stdout, stderr) => {
@@ -70,16 +73,19 @@ function cat () {
 	   console.log(`stderr: ${stderr}`);
 	  }
 	})
+	console.log('Exiting cat().')
 }
 
 app.use(express.static(path.join(__dirname, 'public')))
 
+// Tests functions without using the network
 function test_console () {
 	console.log(dog())
 	console.log(pig())
 	console.log(cat())
 }
 
+// Tests loopback and server reponses
 function test_response () {
 	// Direct string response
 	app.get('/', (req, res) => {
@@ -117,5 +123,6 @@ function test_response () {
 	app.listen(port, () => console.log(`Example app listening at http://localhost:${ port }`))
 }
 
+// Executes
 test_console()
 //test_response()
