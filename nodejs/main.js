@@ -7,16 +7,58 @@ var app = express()
 // These are not properly defined as functions
 // Make these callbacks instead, with function(){}
 function dog () {
-	str = exec('echo "Arf"')
-	return "Arf!" 
+	console.log('Entering dog().')
+	str = exec('echo "Arf"', (err, stdout, stderr) => {
+	  console.log('Bash command called directly.')
+          if (err) {
+            //some err occurred
+            console.log('Error occurred.')
+            console.error(err)
+          } else {
+           // the *entire* stdout and stderr (buffered)
+           console.log(`stdout: ${stdout}`);
+           console.log(`stderr: ${stderr}`);
+          }
+        })
+	// Testing stdout
+//	return "Arf!" 
 }
 
 function pig () {
-	exec('./../cpp/build/Hello')
+	console.log('Entering pig().')
+	exec('./cpp/build/Hello', (err, stdout, stderr) => {
+          console.log('Executable called.')
+          if (err) {
+            //some err occurred
+            console.log('Error occurred.')
+            console.error(err)
+          } else {
+           // the *entire* stdout and stderr (buffered)
+           console.log(`stdout: ${stdout}`);
+           console.log(`stderr: ${stderr}`);
+          }
+        })
+	// This will write as expected, but also store the entire JSON object in str
+	// Returning str then returns the entire object and not just the stdout string.
+	// Maybe we could grab it from a field, or from an event?
+//	str = exec('./cpp/build/Hello', (err, stdout, stderr) => {
+//          console.log('Executable called.')
+//          if (err) {
+//            //some err occurred
+//            console.log('Error occurred.')
+//            console.error(err)
+//          } else {
+//           // the *entire* stdout and stderr (buffered)
+//           console.log(`stdout: ${stdout}`);
+//           console.log(`stderr: ${stderr}`);
+//          }
+//        })
+//	return str
 }
 
 function cat () {
-	exec('./../cpp/build/Main gettyimages-480868504-640_adpp.mp4', (err, stdout, stderr) => {
+	console.log('Entering cat().')
+	exec('./cpp/build/Main gettyimages-480868504-640_adpp.mp4', (err, stdout, stderr) => {
 	  console.log('Executable called.')
 	  if (err) {
 	    //some err occurred
@@ -58,7 +100,7 @@ function test_response () {
 	// Inline call of the complex cpp binary via bash
 	// This returns what seems to be an "exec" initiated with the bash command, instead of the results of the command
 	app.get('/bird', (req, res) => {
-	  res.send(exec('./../cpp/build/Main ../gettyimages-480868504-640_adpp.mp4', (err, stdout, stderr) => {
+	  res.send(exec('./cpp/build/Main ../gettyimages-480868504-640_adpp.mp4', (err, stdout, stderr) => {
 	    console.log('Executable called.')
 	    if (err) {
 	      //some err occurred
