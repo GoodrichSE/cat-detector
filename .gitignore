@@ -1,6 +1,8 @@
 *.mp4
 *.mov
 cpp/build/
+nodejs/node-modules/
+nodejs/node-modules/\*
 
 
 # Compiled source #
@@ -40,3 +42,4 @@ cpp/build/
 .Trashes
 ehthumbs.db
 Thumbs.db
+*.swp

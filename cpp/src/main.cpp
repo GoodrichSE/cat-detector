@@ -37,7 +37,7 @@ int main(int argc, char** argv)
 		return 1;
 	}
 
-	if(signal(SIGINT, signal_handler) == (SIG_ERR)
+	if(signal(SIGINT, signal_handler) == (SIG_ERR))
 			printf("Signal handler error.\n");
 
 	if (argc =2) {
