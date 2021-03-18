@@ -7,7 +7,7 @@ var app = express()
 // Calls subprocess to write to stdout
 function dog () {
 	console.log('Entering dog().')
-	str = exec('echo "Arf"', (err, stdout, stderr) => {
+	exec('echo "Arf"', (err, stdout, stderr) => {
 	  console.log('Bash command called directly.')
           if (err) {
             //some err occurred
@@ -22,6 +22,7 @@ function dog () {
 	// Testing stdout
 //	return "Arf!" 
 	console.log('Exiting dog().')
+	return 0
 }
 
 // Calls subprocess to call cpp binary to write to sdout
@@ -41,7 +42,7 @@ function pig () {
         })
 	// This will write as expected, but also store the entire JSON object in str
 	// Returning str then returns the entire object and not just the stdout string.
-	// Maybe we could grab it from a field, or from an event?
+	// We can grab it with a res.json() call
 //	str = exec('./cpp/build/Hello', (err, stdout, stderr) => {
 //          console.log('Executable called.')
 //          if (err) {
@@ -56,6 +57,7 @@ function pig () {
 //        })
 //	return str
 	console.log('Exiting pig().')
+	return 0
 }
 
 // Calls subprocess to call cpp binary which accepts an argument to write to sdout
@@ -74,6 +76,7 @@ function cat () {
 	  }
 	})
 	console.log('Exiting cat().')
+	return 0
 }
 
 app.use(express.static(path.join(__dirname, 'public')))
@@ -89,7 +92,7 @@ function test_console () {
 function test_response () {
 	// Direct string response
 	app.get('/', (req, res) => {
-	  res.send('Hello World!')
+	  res.send('Hello Wourld!')
 	})
 	// String response called through bash on the server
 	app.get('/dog', (req, res) => {
@@ -102,6 +105,22 @@ function test_response () {
 	// String response called through bash on the server which calls a more complex cpp binary
 	app.get('/cat', (req, res) => {
 	  res.send(cat())
+	})
+	// Inline call of the complex cpp binary via bash
+	// This returns what seems to be an "exec" initiated with the bash command, instead of the results of the command
+	app.get('/llama', (req, res) => {
+	  exec('./cpp/build/Main ../gettyimages-480868504-640_adpp.mp4', (err, stdout, stderr) => {
+	    console.log('Executable called.')
+	    if (err) {
+	      //some err occurred
+	      console.log('Error occurred.')
+	      console.error(err)
+	    } else {
+	     // the *entire* stdout and stderr (buffered)
+	     console.log(`stdout: ${stdout}`);
+	     console.log(`stderr: ${stderr}`);
+	    }
+	  })
 	})
 	// Inline call of the complex cpp binary via bash
 	// This returns what seems to be an "exec" initiated with the bash command, instead of the results of the command
@@ -125,4 +144,4 @@ function test_response () {
 
 // Executes
 test_console()
-//test_response()
+test_response()
