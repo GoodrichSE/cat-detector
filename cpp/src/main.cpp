@@ -42,8 +42,10 @@ int main(int argc, char** argv)
 
 	if (argc =2) {
 		// Check filetype and continue if movie
-		if(strstr(argv[1], ".mp4\0") || strstr(argv[1], ".mov\0"))
+		if(strstr(argv[1], ".mp4\0") || strstr(argv[1], ".mov\0")) {
 			std::cout << "Filename: " << argv[1] << std::endl;
+			return 0;
+		}
 		else
 		{
 			printf("Acceptable formats: .mp4, .mov\n");
