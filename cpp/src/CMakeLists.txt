@@ -8,5 +8,7 @@ configure_file(cd-config.h.in cd-config.h)
 
 add_executable(Main main.cpp)
 add_executable(Hello hey.cpp)
+add_executable(RetStr ret_str.cpp)
  
 target_include_directories(Main PUBLIC "${PROJECT_BINARY_DIR}" "${PROJECT_BINARY_DIR}/cpp")
+target_include_directories(RetStr PUBLIC "${PROJECT_BINARY_DIR}" "${PROJECT_BINARY_DIR}/cpp")

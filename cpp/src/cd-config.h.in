@@ -1,6 +1,9 @@
 //Configured options for cat_detector
+#ifndef CD_CONFIG_H
+#define CD_CONFIG_H
 
 #define cat_detector_VERSION_MAJOR @cat_detector_VERSION_MAJOR@
 #define cat_detector_VERSION_MINOR @cat_detector_VERSION_MINOR@
 #define DUMMY "Hey there, I'm a dummy variable.\n"
 
+#endif
