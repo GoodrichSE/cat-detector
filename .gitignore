@@ -1,9 +1,8 @@
 *.mp4
 *.mov
-cpp/build/
-nodejs/node-modules/
-nodejs/node_modules/*
-nodejs/node-modules/\*
+/cpp/build/
+/nodejs/node-modules
+/nodejs/node_modules
 
 # Compiled source #
 ###################
