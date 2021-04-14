@@ -1,9 +1,8 @@
 *.mp4
 *.mov
-cpp/build/
-nodejs/node-modules/
-nodejs/node_modules/*
-nodejs/node-modules/\*
+/cpp/build/
+/nodejs/node-modules/
+/nodejs/node_modules/*
 
 # Compiled source #
 ###################
@@ -43,3 +42,5 @@ nodejs/node-modules/\*
 ehthumbs.db
 Thumbs.db
 *.swp
+node_modules
+nodejs/node_modules
